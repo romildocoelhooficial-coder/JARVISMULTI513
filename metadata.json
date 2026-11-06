@@ -1,0 +1,6 @@
+{
+  "name": "JARVES - Assistente Virtual de Alta Performance",
+  "description": "Assistente virtual futurista inspirado em J.A.R.V.I.S., com controle de hardware, interação por voz, tradutor e tutor de inglês, jogos clássicos de arcade (Space Invaders e Pac-Man com áudio retro sintetizado), automação, WhatsApp, finanças e produtividade.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

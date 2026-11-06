@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/database/zip", "destination": "/jarves_public_html.zip" },
+    { "source": "/api/database/index-php", "destination": "/index.php" },
+    { "source": "/api/database/api-php", "destination": "/api.php" },
+    { "source": "/api/database/conexao-php", "destination": "/conexao.php" },
+    { "source": "/api/database/sql", "destination": "/database/emribeir_jarves.sql" },
+    { "source": "/api/database/jarvisjerico-sql", "destination": "/database/jarvisjerico.sql" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}

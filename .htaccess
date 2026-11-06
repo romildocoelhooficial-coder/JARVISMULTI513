@@ -1,0 +1,50 @@
+# ==============================================================================
+# JARVES INTELLIGENT SYSTEM - CONFIGURAÇÃO APACHE / CPANEL (.htaccess)
+# ==============================================================================
+
+# 1. Definir arquivo padrão de abertura
+DirectoryIndex index.php index.html
+
+# 2. Habilitar Regras de Reescrita (Mod_Rewrite)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Se a requisição for para um arquivo ou diretório físico existente, serve diretamente
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Reencaminhar rotas /api/* para api.php
+    RewriteRule ^api/(.*)$ api.php?action=$1 [QSA,L]
+
+    # Todas as demais rotas reescrevem para index.php (SPA Routing)
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# 3. Tipos MIME Adicionais para Áudio, Imagens e Módulos JavaScript
+<IfModule mod_mime.c>
+    AddType application/javascript .js .mjs
+    AddType text/css .css
+    AddType audio/mpeg .mp3
+    AddType audio/ogg .ogg
+    AddType image/jpeg .jfif .jpg .jpeg
+    AddType image/png .png
+    AddType image/svg+xml .svg
+    AddType application/json .json
+    AddType application/sql .sql
+</IfModule>
+
+# 4. Cabeçalhos de Segurança e CORS
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# 5. Compressão Gzip / Deflate para Carregamento Ultrarrápido
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
+</IfModule>
